@@ -1,39 +1,45 @@
-var pineapples = angular.module('pineapples', []);
+var pineapples = angular.module('pineapples', ['ngCookies']);
 
 pineapples.controller('JuiceCtrl', function($scope) {
 	$scope.juice = "PINEAPPLES!!!!";
 });
 
-pineapples.directive('juiceBox', ['PineappleService', function(PineappleService) {
+pineapples.directive('juiceBox', ['$cookieStore', 'PineappleService', function($cookieStore, PineappleService) {
 	return {
 		restrict: 'AE',
 		scope: {
 			searchTerm: '='
 		},
-		template: "<button class='pill-btn search-btn' ng-click='searchPineapples()'>Search!</button>" +
-							"<div data-ng-show='searched'>" +
-								"<h2>Results</h2>" +
+		template: "<div class='bookmarks' ng-click='getBookmarks()'><i class='fa fa-bookmark fa-2x'></i></div>" +
+							"<button class='pill-btn search-btn' ng-click='searchPineapples()'>Search!</button>" +
+							"<div data-ng-show='searched || bookmarkTab'>" +
+								"<h2 ng-hide='bookmarkTab'>Results</h2>" +
+								"<h2 ng-show='bookmarkTab'>Bookmarks</h2>" +
 								"<div class='juice-box'>" +
 									"<ul>" +
 										"<li ng-repeat='pineapple in pineapples track by $index'>" +
 											"<h3>{{pineapple.title}}</h3>" +
-											"<div class='recipe-img'>" +
-												"<div class='overlay'></div>" +
-												"<div class='star'>{{pineapple.social_rank}} <i class='fa fa-star fa-2x'></i></div>" +
-												"<a ng-href='{{pineapple.source_url}}'><img ng-src='{{pineapple.image_url}}' /></a>" +
-											"</div>" +
+											// "<a ng-click='goToRecipe(pineapple.source_url)'>" +
+												"<div class='recipe-img'>" +
+													"<div class='overlay'></div>" +
+													"<div class='star' ng-click='addBookmark(pineapple)'><i class='fa fa-bookmark fa-2x'></i></div>" +
+													"<img ng-src='{{pineapple.image_url}}' />" +
+												"</div>" +
+											// "</a>" +
 										"</li>" +
 									"</ul>" +
 								"</div>" +
 							"</div>",
 		controller: function($scope, $element) {
+			$scope.bookmarks = [];
+			$scope.bookmarkTab = false;
 			$scope.searched = false;
 			$scope.pineapples = [];
 
 			$scope.searchPineapples = function() {
 				PineappleService.getPineapples($scope.searchTerm)
 				.then(function(response) {
-					console.log($scope.searchTerm);
+					$scope.bookmarkTab = false;
 					$scope.searched = true;
 					$scope.pineapples = [];
 					var recipes = response.recipes;
@@ -48,10 +54,34 @@ pineapples.directive('juiceBox', ['PineappleService', function(PineappleService)
 						recipe["publisher"] = recipes[i].publisher;
 
 						$scope.pineapples.push(recipe);
-						console.log(recipe);
 					}
 				});
 			};
+
+			$scope.goToRecipe = function(url) {
+				chrome.tabs.create({
+					url: url
+				});
+			};
+
+			$scope.getBookmarks = function() {
+				$scope.bookmarkTab = true;
+				$scope.bookmarks = $cookieStore.get('pineapple-chrome-app-bm');
+				console.log($scope.bookmarks);
+				$scope.pineapples = $scope.bookmarks;
+			};
+
+			$scope.addBookmark = function(recipe) {
+				if($cookieStore.get('pineapple-chrome-app-bm')) {
+					$scope.bookmarks = $cookieStore.get('pineapple-chrome-app-bm');
+					$scope.bookmarks.unshift(recipe);
+					$scope.bookmarks = $cookieStore.put('pineapple-chrome-app-bm', $scope.bookmarks);
+				}
+				else {
+					$scope.bookmarks.unshift(recipe);
+					$scope.bookmarks = $cookieStore.put('pineapple-chrome-app-bm', $scope.bookmarks);
+				}
+			}
 		},
 		link: function(scope, element, attrs) {
 
