@@ -14,7 +14,8 @@ pineapples.directive('juiceBox', ['PineappleService', function(PineappleService)
 							"<div class='juice-box'>" +
 								"<ul>" +
 									"<li ng-repeat='pineapple in pineapples track by $index'>" +
-										"<h3>{{pineapple.title}}</h3>" +
+										"<a ng-href='{{pineapple.source_url}}''><h3>{{pineapple.title}}</h3></a>" +
+										"<img ng-src='{{pineapple.image_url}}' />" +
 									"</li>" +
 								"</ul>" +
 							"</div>",
@@ -22,17 +23,20 @@ pineapples.directive('juiceBox', ['PineappleService', function(PineappleService)
 			$scope.pineapples = [];
 
 			PineappleService.getPineapples()
-			.success(function(response) {
-				for(pineapple in response) {
+			.then(function(response) {
+				var recipes = response.recipes;
+				console.log(recipes);
+				for(i in response.recipes) {
 					var recipe = {};
 
-					recipe["image_url"] = pineapple.image_url;
-					recipe["title"] = pineapple.title;
-					recipe["source_url"] = pineapple.source_url;
-					recipe["social_rank"] = pineapple.social_rank;
-					recipe["publisher"] = pineapple.publisher;
+					recipe["image_url"] = recipes[i].image_url;
+					recipe["title"] = recipes[i].title;
+					recipe["source_url"] = recipes[i].source_url;
+					recipe["social_rank"] = recipes[i].social_rank;
+					recipe["publisher"] = recipes[i].publisher;
 
-					$scope.pineapple.push(recipe);
+					$scope.pineapples.push(recipe);
+					console.log(recipe);
 				}
 			});
 		},
@@ -61,6 +65,8 @@ pineapples.factory('PineappleService', ['$http', '$q', function($http, $q) {
 
         deferred.resolve(response);
 			});
+
+			return deferred.promise;
 		}
 	};
 }]);
