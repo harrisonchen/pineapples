@@ -10,35 +10,43 @@ pineapples.directive('juiceBox', ['PineappleService', function(PineappleService)
 		scope: {
 
 		},
-		template: "<h2>Results</h2>" +
-							"<div class='juice-box'>" +
-								"<ul>" +
-									"<li ng-repeat='pineapple in pineapples track by $index'>" +
-										"<a ng-href='{{pineapple.source_url}}''><h3>{{pineapple.title}}</h3></a>" +
-										"<img ng-src='{{pineapple.image_url}}' />" +
-									"</li>" +
-								"</ul>" +
+		template: "<button class='pill-btn search-btn' ng-click='searchPineapples()'>Search!</button>" +
+							"<div data-ng-show='searched'>" +
+								"<h2>Results</h2>" +
+								"<div class='juice-box'>" +
+									"<ul>" +
+										"<li ng-repeat='pineapple in pineapples track by $index'>" +
+											"<a ng-href='{{pineapple.source_url}}''><h3>{{pineapple.title}}</h3></a>" +
+											"<img ng-src='{{pineapple.image_url}}' />" +
+										"</li>" +
+									"</ul>" +
+								"</div>" +
 							"</div>",
 		controller: function($scope, $element) {
+			$scope.searched = false;
 			$scope.pineapples = [];
 
-			PineappleService.getPineapples()
-			.then(function(response) {
-				var recipes = response.recipes;
-				console.log(recipes);
-				for(i in response.recipes) {
-					var recipe = {};
+			$scope.searchPineapples = function() {
+				PineappleService.getPineapples()
+				.then(function(response) {
+					$scope.searched = true;
+					$scope.pineapples = [];
+					var recipes = response.recipes;
 
-					recipe["image_url"] = recipes[i].image_url;
-					recipe["title"] = recipes[i].title;
-					recipe["source_url"] = recipes[i].source_url;
-					recipe["social_rank"] = recipes[i].social_rank;
-					recipe["publisher"] = recipes[i].publisher;
+					for(i in response.recipes) {
+						var recipe = {};
 
-					$scope.pineapples.push(recipe);
-					console.log(recipe);
-				}
-			});
+						recipe["image_url"] = recipes[i].image_url;
+						recipe["title"] = recipes[i].title;
+						recipe["source_url"] = recipes[i].source_url;
+						recipe["social_rank"] = recipes[i].social_rank;
+						recipe["publisher"] = recipes[i].publisher;
+
+						$scope.pineapples.push(recipe);
+						console.log(recipe);
+					}
+				});
+			};
 		},
 		link: function(scope, element, attrs) {
 

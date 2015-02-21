@@ -32,8 +32,23 @@
       }
 
       img {
-        width: 100px;
-        height: 100px;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        display: block;
+        border-radius: 10px 10px;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        margin: 0;
+        padding: 0;
+        margin-bottom: 32px;
       }
 
       input {
@@ -78,11 +93,11 @@
 
       .juice-box {
         border: 1px solid #FFFFFF;
-        width: 490px;
+        width: 480px;
         min-height: 100%;
       }
     </style>
-
+    <link rel="stylesheet" type="text/css" href="angular-csp.css">
     <!-- <script src="popup.js"></script> -->
   </head>
   <body>
@@ -93,10 +108,6 @@
     <input class="pill-btn" type="text" placeholder="chicken?" />
 
     <br />
-    <button class="pill-btn search-btn">Search!</button>
-
-    <section class="search-results"></section>
-
     <br />
     <juice-box></juice-box>
 
