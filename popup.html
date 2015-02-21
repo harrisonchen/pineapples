@@ -1,0 +1,101 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html data-ng-app="pineapples" data-ng-csp>
+  <head>
+    <title>Pineapples</title>
+    <style>
+      html {
+        padding: 0;
+      }
+
+      body {
+        font-family: "Helvetica Neue Light", sans-serif;
+        width: 480px;
+        height: 860px;
+        background-color: #202020;
+        color: #FFFFFF;
+        letter-spacing: 0.2em;
+        margin: 0;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        text-align: center;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      input {
+        border: 1px solid #FFFFFF;
+        display: block;
+        width: 300px;
+        margin: 0 auto;
+        outline: none;
+        height: 40px;
+        background-color: #202020;
+        color: #FFFFFF;
+        padding: 12px;
+        font-size: 32px;
+        text-align: center;
+      }
+
+      .pill-btn {
+        border-top-right-radius: 50px 50px;
+        border-top-left-radius: 50px 50px;
+        border-bottom-right-radius: 50px 50px;
+        border-bottom-left-radius: 50px 50px;
+      }
+
+      .search-btn {
+        display: block;
+        background-color: #202020;
+        color: #FFFFFF;
+        border: 1px solid #FFFFFF;
+        margin: 0 auto;
+        width: 100px;
+        height: 40px;
+        font-size: 16px;
+        outline: none;
+
+        transition: all 0.1s ease-in-out;
+      }
+
+      .search-btn:hover {
+        background-color: #FFFFFF;
+        color: #202020;
+      }
+
+      .juice-box {
+        border: 1px solid #FFFFFF;
+        width: 490px;
+        height: 100%;
+      }
+    </style>
+
+    <!-- <script src="popup.js"></script> -->
+  </head>
+  <body>
+    <h1>Pineapples!</h1>
+
+    <h2>What are you craving?</h2>
+
+    <input class="pill-btn" type="text" placeholder="chicken?" />
+
+    <br />
+    <button class="pill-btn search-btn">Search!</button>
+
+    <section class="search-results"></section>
+
+    <br />
+    <juice-box></juice-box>
+
+    <script src="angular.min.js"></script>
+    <script src="pineapples.js"></script>
+  </body>
+</html>
+
