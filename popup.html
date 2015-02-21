@@ -121,14 +121,32 @@
         transition: all 0.1s ease-in-out;
       }
 
-      .star {
+      .add-bookmark-btn {
         display: block;
         position: absolute;
         /*border: 1px solid white;*/
-        width: 65px;
+        width: 20px;
         height: 25px;
         margin: 0 auto;
-        left: 72px;
+        left: 68px;
+        top: 88px;
+        opacity: 0;
+
+        transition: all 0.1s ease-in-out;
+      }
+
+      .add-bookmark-btn .fa-bookmark {
+        color: #FFFFFF;
+      }
+
+      .redirect-btn {
+        display: block;
+        position: absolute;
+        /*border: 1px solid white;*/
+        width: 20px;
+        height: 25px;
+        margin: 0 auto;
+        left: 108px;
         top: 88px;
         opacity: 0;
 
@@ -144,8 +162,20 @@
         border-radius: 100px 100px !important;
       }
 
-      .recipe-img:hover .star {
-        opacity: 1;
+      .recipe-img:hover .add-bookmark-btn {
+        opacity: 0.5;
+      }
+
+      .recipe-img:hover .redirect-btn {
+        opacity: 0.5;
+      }
+
+      .add-bookmark-btn:hover {
+        opacity: 1 !important;
+      }
+
+      .redirect-btn:hover {
+        opacity: 1 !important;
       }
 
       .bookmarks {

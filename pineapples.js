@@ -22,7 +22,8 @@ pineapples.directive('juiceBox', ['$cookieStore', 'PineappleService', function($
 											// "<a ng-click='goToRecipe(pineapple.source_url)'>" +
 												"<div class='recipe-img'>" +
 													"<div class='overlay'></div>" +
-													"<div class='star' ng-click='addBookmark(pineapple)'><i class='fa fa-bookmark fa-2x'></i></div>" +
+													"<div class='add-bookmark-btn' ng-click='addBookmark(pineapple)'><i class='fa fa-bookmark fa-2x'></i></div>" +
+													"<div class='redirect-btn' ng-click='goToRecipe(pineapple.source_url)'><i class='fa fa-arrow-right fa-2x'></i></div>" +
 													"<img ng-src='{{pineapple.image_url}}' />" +
 												"</div>" +
 											// "</a>" +
