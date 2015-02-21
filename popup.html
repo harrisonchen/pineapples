@@ -29,6 +29,10 @@
       a {
         color: #FFFFFF;
         text-decoration: none;
+        display: block;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
       }
 
       img {
@@ -37,6 +41,8 @@
         margin: 0 auto;
         display: block;
         border-radius: 10px 10px;
+
+        transition: all 0.1s ease-in-out;
       }
 
       ul {
@@ -92,12 +98,58 @@
       }
 
       .juice-box {
-        border: 1px solid #FFFFFF;
+        border-top: 1px solid #FFFFFF;
         width: 480px;
         min-height: 100%;
       }
+
+      .recipe-img {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+      }
+
+      .overlay {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0);
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        border-radius: 10px 10px;
+
+        transition: all 0.1s ease-in-out;
+      }
+
+      .star {
+        display: block;
+        position: absolute;
+        /*border: 1px solid white;*/
+        width: 65px;
+        height: 25px;
+        margin: 0 auto;
+        left: 72px;
+        top: 88px;
+        opacity: 0;
+
+        transition: all 0.1s ease-in-out;
+      }
+
+      .recipe-img:hover .overlay {
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 100px 100px;
+      }
+
+      .recipe-img:hover img {
+        border-radius: 100px 100px !important;
+      }
+
+      .recipe-img:hover .star {
+        opacity: 1;
+      }
     </style>
     <link rel="stylesheet" type="text/css" href="angular-csp.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- <script src="popup.js"></script> -->
   </head>
   <body>
@@ -105,11 +157,11 @@
 
     <h2>What are you craving?</h2>
 
-    <input class="pill-btn" type="text" placeholder="chicken?" />
+    <input class="pill-btn" type="text" placeholder="chicken?" ng-model="searchTerm" />
 
     <br />
     <br />
-    <juice-box></juice-box>
+    <juice-box search-term="searchTerm"></juice-box>
 
     <script src="angular.min.js"></script>
     <script src="pineapples.js"></script>
