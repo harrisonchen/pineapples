@@ -19,14 +19,12 @@ pineapples.directive('juiceBox', ['$cookieStore', 'PineappleService', function($
 									"<ul>" +
 										"<li ng-repeat='pineapple in pineapples track by $index'>" +
 											"<h3>{{pineapple.title}}</h3>" +
-											// "<a ng-click='goToRecipe(pineapple.source_url)'>" +
-												"<div class='recipe-img'>" +
-													"<div class='overlay'></div>" +
-													"<div class='add-bookmark-btn' ng-click='addBookmark(pineapple)'><i class='fa fa-bookmark fa-2x'></i></div>" +
-													"<div class='redirect-btn' ng-click='goToRecipe(pineapple.source_url)'><i class='fa fa-arrow-right fa-2x'></i></div>" +
-													"<img ng-src='{{pineapple.image_url}}' />" +
-												"</div>" +
-											// "</a>" +
+											"<div class='recipe-img'>" +
+												"<div class='overlay'></div>" +
+												"<div class='add-bookmark-btn' ng-click='addBookmark(pineapple)'><i class='fa fa-bookmark fa-2x'></i></div>" +
+												"<div class='redirect-btn' ng-click='goToRecipe(pineapple.source_url)'><i class='fa fa-arrow-right fa-2x'></i></div>" +
+												"<img ng-src='{{pineapple.image_url}}' />" +
+											"</div>" +
 										"</li>" +
 									"</ul>" +
 								"</div>" +
@@ -68,7 +66,6 @@ pineapples.directive('juiceBox', ['$cookieStore', 'PineappleService', function($
 			$scope.getBookmarks = function() {
 				$scope.bookmarkTab = true;
 				$scope.bookmarks = $cookieStore.get('pineapple-chrome-app-bm');
-				console.log($scope.bookmarks);
 				$scope.pineapples = $scope.bookmarks;
 			};
 
@@ -96,14 +93,12 @@ pineapples.factory('PineappleService', ['$http', '$q', function($http, $q) {
 			var deferred = $q.defer();
 
       var req = {
-        method: 'POST',
-        url: 'http://food2fork.com/api/search?key=32f9c504981b7c8dc09c2bbd330a99b4&q=' + query
+        method: 'GET',
+        url: 'http://pineapple-server.herokuapp.com/recipes?query=' + query,
       };
 
       $http(req)
       .success(function(response) {
-      	console.log(response);
-
         deferred.resolve(response);
 			});
 
