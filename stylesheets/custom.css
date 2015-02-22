@@ -30,7 +30,6 @@ img {
   height: 200px;
   margin: 0 auto;
   display: block;
-  border-radius: 10px 10px;
 
   transition: all 0.1s ease-in-out;
 }
@@ -98,6 +97,11 @@ input {
   width: 200px;
   height: 200px;
   margin: 0 auto;
+  overflow: hidden;
+  border-radius: 10px 10px;
+  z-index: 3;
+
+  transition: all 0.1s ease-in-out;
 }
 
 .overlay {
@@ -106,7 +110,7 @@ input {
   width: 200px;
   height: 200px;
   margin: 0 auto;
-  border-radius: 10px 10px;
+  z-index: 2;
 
   transition: all 0.1s ease-in-out;
 }
@@ -121,6 +125,7 @@ input {
   left: 68px;
   top: 88px;
   opacity: 0;
+  z-index: 2;
 
   transition: all 0.1s ease-in-out;
 }
@@ -139,17 +144,22 @@ input {
   left: 108px;
   top: 88px;
   opacity: 0;
+  z-index: 2;
 
   transition: all 0.1s ease-in-out;
 }
 
+.recipe-img:hover {
+  /*border-radius: 100px 100px !important;*/
+}
+
 .recipe-img:hover .overlay {
-  background-color: rgba(0, 0, 0, 0.8);
-  border-radius: 100px 100px;
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 .recipe-img:hover img {
-  border-radius: 100px 100px !important;
+  transform:scale(1.5);
+  -webkit-transform:scale(1.5);
 }
 
 .recipe-img:hover .add-bookmark-btn {
