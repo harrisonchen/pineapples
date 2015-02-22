@@ -97,10 +97,7 @@ pineapples.factory('PineappleService', ['$http', '$q', function($http, $q) {
 
       var req = {
         method: 'POST',
-        url: 'http://food2fork.com/api/search?key=32f9c504981b7c8dc09c2bbd330a99b4&q=' + query,
-        headers: {
-        	'Access-Control-Allow-Origin': '*'
-        }
+        url: 'http://food2fork.com/api/search?key=32f9c504981b7c8dc09c2bbd330a99b4&q=' + query
       };
 
       $http(req)
