@@ -94,7 +94,7 @@ pineapples.factory('PineappleService', ['$http', '$q', function($http, $q) {
 
       var req = {
         method: 'GET',
-        url: 'http://pineapple-server.herokuapp.com/recipes?query=' + query,
+        url: 'http://pineapple-server.herokuapp.com/api/v1/recipes?query=' + query,
       };
 
       $http(req)
