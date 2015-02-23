@@ -30,10 +30,8 @@ pineapples.directive('juiceBox', ['$cookieStore', 'PineappleService', function($
                 "</div>" +
               "</div>",
     controller: function($scope, $element) {
-      $scope.bookmarks = [];
-      $scope.bookmarkTab = false;
-      $scope.searched = false;
-      $scope.pineapples = [];
+
+      var bookmarks = [];
 
       $scope.searchPineapples = function() {
         PineappleService.getPineapples($scope.searchTerm)
@@ -71,18 +69,20 @@ pineapples.directive('juiceBox', ['$cookieStore', 'PineappleService', function($
 
       $scope.addBookmark = function(recipe) {
         if($cookieStore.get('pineapple-chrome-app-bm')) {
-          $scope.bookmarks = $cookieStore.get('pineapple-chrome-app-bm');
-          $scope.bookmarks.unshift(recipe);
-          $scope.bookmarks = $cookieStore.put('pineapple-chrome-app-bm', $scope.bookmarks);
+          bookmarks = $cookieStore.get('pineapple-chrome-app-bm');
+          bookmarks.unshift(recipe);
+          bookmarks = $cookieStore.put('pineapple-chrome-app-bm', bookmarks);
         }
         else {
-          $scope.bookmarks.unshift(recipe);
-          $scope.bookmarks = $cookieStore.put('pineapple-chrome-app-bm', $scope.bookmarks);
+          bookmarks.unshift(recipe);
+          bookmarks = $cookieStore.put('pineapple-chrome-app-bm', bookmarks);
         }
       }
     },
     link: function(scope, element, attrs) {
-
+      scope.bookmarkTab = false;
+      scope.searched = false;
+      scope.pineapples = [];
     }
   };
 }]);
