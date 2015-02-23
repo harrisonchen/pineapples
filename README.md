@@ -15,9 +15,16 @@ Check it out! - <a href="http://bit.ly/1DM04HS" target="_blank">Pineapples!</a>
 
 ### Contributing
 
+Fork the repo
+
 Start with the 'develop' branch
 ```
 git checkout develop
+```
+
+Open a new branch
+```
+git checkout -b <some good branch name>
 ```
 
 Make your changes and commit them with a good message
@@ -32,3 +39,5 @@ git push origin <branch-name>
 ```
 
 Lastly, make a pull request: https://help.github.com/articles/using-pull-requests/
+
+*** Remember to pull in new changes from the upstream before pushing! ***
