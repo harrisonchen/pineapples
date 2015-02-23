@@ -3,7 +3,7 @@
 
   "name": "Pineapples!",
   "description": "All about the Pineapples",
-  "version": "1.0.3",
+  "version": "1.0.4",
 
   "browser_action": {
     "default_icon": "assets/images/icon.png",
