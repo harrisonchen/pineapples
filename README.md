@@ -6,6 +6,9 @@ Pineapples! is an easy to use chrome extension that allows the user to search up
 Check it out! - <a href="http://bit.ly/1DM04HS" target="_blank">Pineapples!</a>
 
 ### Upcoming Features
+<ul>
+  <li><a href="https://developer.chrome.com/extensions/storage">User specific persistant storage of bookmarks</a></li>
+</ul>
 
 ### Issues:
 <ul>
