@@ -8,9 +8,10 @@ pineapples.directive('juiceBox', ['$cookieStore', 'PineappleService', function($
   return {
     restrict: 'AE',
     scope: {
-      searchTerm: '='
     },
-    template: "<div class='bookmarks' ng-click='getBookmarks()'><i class='fa fa-bookmark fa-2x'></i></div>" +
+    template: "<input class='search-input pill-btn' type='text' placeholder='Type an ingredient' ng-model='searchTerm' />" +
+              "<br />" +
+              "<div class='bookmarks' ng-click='getBookmarks()'><i class='fa fa-bookmark fa-2x'></i></div>" +
               "<button class='pill-btn search-btn' ng-click='searchPineapples()'>Search!</button>" +
               "<div data-ng-show='searched || bookmarkTab'>" +
                 "<h2 ng-hide='bookmarkTab'>Results</h2>" +

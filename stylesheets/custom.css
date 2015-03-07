@@ -3,14 +3,13 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue Light", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   width: 480px;
   height: 860px;
   background-color: #202020;
   color: #FFFFFF;
   letter-spacing: 0.2em;
   margin: 0;
-  overflow: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -61,6 +60,16 @@ input {
   text-align: center;
 }
 
+.search-input::-webkit-input-placeholder {
+  font-family: 'Open Sans', sans-serif;
+  opacity: 0.3;
+  padding-bottom: 48px;
+}
+
+.search-input {
+  font-family: 'Open Sans', sans-serif;
+}
+
 .pill-btn {
   border-top-right-radius: 50px 50px;
   border-top-left-radius: 50px 50px;
@@ -91,6 +100,7 @@ input {
   border-top: 1px solid #FFFFFF;
   width: 480px;
   min-height: 100%;
+  /*overflow: scroll;*/
 }
 
 .recipe-img {
