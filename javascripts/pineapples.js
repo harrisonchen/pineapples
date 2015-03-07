@@ -9,10 +9,11 @@ pineapples.directive('juiceBox', ['$cookieStore', 'PineappleService', function($
     restrict: 'AE',
     scope: {
     },
-    template: "<input class='search-input pill-btn' type='text' placeholder='Type an ingredient' ng-model='searchTerm' />" +
+    template: "<form ng-submit='searchPineapples()'>" +
+              "<input class='search-input pill-btn' type='text' placeholder='Type an ingredient' ng-model='searchTerm' />" +
               "<br />" +
               "<div class='bookmarks' ng-click='getBookmarks()'><i class='fa fa-bookmark fa-2x'></i></div>" +
-              "<button class='pill-btn search-btn' ng-click='searchPineapples()'>Search!</button>" +
+              "<button class='pill-btn search-btn' type='submit'>Search!</button>" +
               "<div data-ng-show='searched || bookmarkTab'>" +
                 "<h2 ng-hide='bookmarkTab'>Results</h2>" +
                 "<h2 ng-show='bookmarkTab'>Bookmarks</h2>" +
@@ -29,7 +30,8 @@ pineapples.directive('juiceBox', ['$cookieStore', 'PineappleService', function($
                     "</li>" +
                   "</ul>" +
                 "</div>" +
-              "</div>",
+              "</div>" +
+              "</form>",
     controller: function($scope, $element) {
 
       var bookmarks = [];
