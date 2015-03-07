@@ -12,7 +12,6 @@ Check it out! - <a href="http://bit.ly/1DM04HS" target="_blank">Pineapples!</a>
 
 ### Issues:
 <ul>
-  <li>Search not searching when user press 'enter' on keyboard</li>
   <li>Saved bookmarked cookies expires after quiting browser.</li>
 </ul>
 
